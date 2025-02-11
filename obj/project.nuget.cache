@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EDjMWBuXyvwjy/gxCGm/w64x6nK61tch9JHLdFMzO54D/KqlF6ewm4K41vgW2j25olgW8XOqtUWSSvPYoq6XTw==",
+  "dgSpecHash": "XMU4eRrdozr/47wDkof8YCzvpNP6sounTYDSDJLfq2vISesGMi5IekLTko55NqBnZoqM5J19FWiF9TsbgaZYdg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\15390\\Desktop\\C#TrialPrj\\c#项目.csproj",
+  "projectFilePath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\15390\\.nuget\\packages\\alibabacloud.endpointutil\\0.1.1\\alibabacloud.endpointutil.0.1.1.nupkg.sha512",
     "C:\\Users\\15390\\.nuget\\packages\\alibabacloud.gatewayspi\\0.0.3\\alibabacloud.gatewayspi.0.0.3.nupkg.sha512",

@@ -379,11 +379,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\15390\\Desktop\\C#TrialPrj\\c#项目.csproj",
+      "projectUniqueName": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj",
       "projectName": "c#项目",
-      "projectPath": "C:\\Users\\15390\\Desktop\\C#TrialPrj\\c#项目.csproj",
+      "projectPath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj",
       "packagesPath": "C:\\Users\\15390\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\15390\\Desktop\\C#TrialPrj\\obj\\",
+      "outputPath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\15390\\AppData\\Roaming\\NuGet\\NuGet.Config"
