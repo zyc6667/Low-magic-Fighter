@@ -1,6 +1,6 @@
 using System;
 
-namespace ZYC
+namespace Low_magic_Fighter
 {
     public static class Tool
     {
