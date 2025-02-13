@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj": {}
+    "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\Low_magic_Fighter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj": {
+    "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\Low_magic_Fighter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj",
-        "projectName": "c#项目",
-        "projectPath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\c#项目.csproj",
+        "projectUniqueName": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\Low_magic_Fighter.csproj",
+        "projectName": "Low_magic_Fighter",
+        "projectPath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\Low_magic_Fighter.csproj",
         "packagesPath": "C:\\Users\\15390\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\15390\\Desktop\\Low-magic-Fighter\\obj\\",
         "projectStyle": "PackageReference",
@@ -43,10 +43,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AlibabaCloud.SDK.Bailian20231229": {
-              "target": "Package",
-              "version": "[1.11.1, )"
-            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"

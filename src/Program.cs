@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 
 namespace Low_magic_Fighter
 {
@@ -7,7 +6,7 @@ namespace Low_magic_Fighter
     {
         static void Main(string[] args)
         {
-  
+            Console.Write("hello!");
         }
     }
 }

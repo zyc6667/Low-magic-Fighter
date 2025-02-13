@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("c#项目")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Low_magic_Fighter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd38fe112f001f0eeccb707cf6cb26fdcc945a47")]
-[assembly: System.Reflection.AssemblyProductAttribute("c#项目")]
-[assembly: System.Reflection.AssemblyTitleAttribute("c#项目")]
+[assembly: System.Reflection.AssemblyProductAttribute("Low_magic_Fighter")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Low_magic_Fighter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。
