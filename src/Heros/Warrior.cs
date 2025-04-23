@@ -8,6 +8,7 @@ namespace Low_magic_Fighter
         public Warrior()
         {
             Name = "Warrior";
+            HeroIndex=1;
             Health = 150;
             MaxHealth = 150;
             Attack = 20;
@@ -41,8 +42,6 @@ namespace Low_magic_Fighter
                 Console.WriteLine($"{user.Name} used {SkillName} on {target.Name} for {damage} damage.");
             }
         }
-
-
 
     }
 

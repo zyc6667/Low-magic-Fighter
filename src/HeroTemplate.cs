@@ -3,9 +3,10 @@ using System;
 
 namespace Low_magic_Fighter
 {
-    abstract class Hero
+    public abstract class Hero
     {
-        public required string Name { get; set; }
+        public string? Name { get; set; }
+        public int HeroIndex { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
         public int Attack { get; set; }
@@ -26,15 +27,16 @@ namespace Low_magic_Fighter
                 Skills[skillIndex].Activate(this, target);
             }
         }
+
     }
 
-    interface IPassive
+    public interface IPassive
     {
         string PassiveName { get; }
         void ApplyEffect(Hero user); // 回合开始时应用
     }
     
-    interface ISkill
+    public interface ISkill
     {
         string SkillName { get; }
         int Cooldown { get; } //冷却
