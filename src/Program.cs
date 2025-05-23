@@ -1,5 +1,5 @@
-﻿using System;
-using System.Reflection.Metadata.Ecma335;
+﻿﻿using System;
+using System.Collections.Generic;
 
 namespace Low_magic_Fighter
 {
@@ -7,16 +7,29 @@ namespace Low_magic_Fighter
     {
         static void Main(string[] args)
         {
-            //Console.Write("hello!");
-            // 创建英雄
-        Hero warrior = new Warrior();
-  
+            // 所有可选英雄
+            List<Hero> allHeroes = new List<Hero>
+            {
+                new Warrior(),
+                new Mage(),
+                new Archer(),
+                new Assassin(),
+                new Paladin(),
+                new Berserker()
+            };
 
-        // 创建游戏
-        Game game = new Game(new List<Hero> { warrior});
+            int heroesPerPlayer = 3; // 每个玩家选择英雄数量，可根据需求修改
 
-        // 启动游戏
-        game.StartGame();
+            // 创建选择英雄实例
+            ChooseHero chooser = new ChooseHero(allHeroes, heroesPerPlayer);
+
+            // 开始选择，返回两个玩家的英雄列表
+            var (player1Heroes, player2Heroes) = chooser.StartSelection(); //这是个元组tuple
+
+            // 创建游戏并启动
+            Game game = new Game(player1Heroes, player2Heroes);
+            game.StartGame();
         }
     }
 }
+

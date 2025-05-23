@@ -7,7 +7,7 @@ namespace Low_magic_Fighter
     {
         public Warrior()
         {
-            Name = "Warrior";
+            Name = "狂战士";
             HeroIndex=1;
             Health = 150;
             MaxHealth = 150;
