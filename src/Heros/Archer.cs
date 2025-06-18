@@ -1,25 +1,25 @@
-/*基础英雄:战士*/
+//弓箭手
 using System;
 
 namespace Low_magic_Fighter
 {
-    class Warrior : Hero
+    class Archer : Hero
     {
-        public Warrior()
+        public Archer()
         {
-            Name = "战士";
+            Name = "弓箭手";
             Health = 150;
             MaxHealth = 150;
             Attack = 20;
             Defense = 10;
-            Passive = new WarriorPassive();
+            Passive = new BerserkerPassive();
             Skills.Add(new NormalAttack());
             Skills.Add(new SlashSkill());
         }
 
-        class WarriorPassive : IPassive //被动：狂战士之怒
+        class BerserkerPassive : IPassive //被动：狂战士之怒
         {
-            public string PassiveName => "Warrior's Rage";
+            public string PassiveName => "Berserker's Rage";
 
             public void ApplyEffect(Hero user)
             {
@@ -30,7 +30,6 @@ namespace Low_magic_Fighter
                 }
             }
         }
-
         class NormalAttack : ISkill //普通攻击
         {
             public string SkillName => "普通攻击";
@@ -43,11 +42,10 @@ namespace Low_magic_Fighter
                 Console.WriteLine($"{user.Name} 使用 {SkillName} 对 {target.Name} 造成了 {damage} 点伤害.");
             }
         }
-
         class SlashSkill : ISkill //一技能：猛击
         {
             public string SkillName => "Slash";
-            public int Cooldown => 1;
+            public int Cooldown => 2;
 
             public void Activate(Hero user, Hero target)
             {

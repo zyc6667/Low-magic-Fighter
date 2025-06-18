@@ -1,32 +1,39 @@
-/*基础英雄:战士*/
+//狂战士
 using System;
 
 namespace Low_magic_Fighter
 {
-    class Warrior : Hero
+    class Berserker : Hero
     {
-        public Warrior()
+        public Berserker()
         {
-            Name = "战士";
+            Name = "狂战士";
             Health = 150;
             MaxHealth = 150;
             Attack = 20;
             Defense = 10;
-            Passive = new WarriorPassive();
+            Passive = new BerserkerPassive();
             Skills.Add(new NormalAttack());
             Skills.Add(new SlashSkill());
         }
 
-        class WarriorPassive : IPassive //被动：狂战士之怒
+        class BerserkerPassive : IPassive //被动：狂战士之怒
         {
-            public string PassiveName => "Warrior's Rage";
-
+            public string PassiveName => "【被动】狂战士之怒";
+            private bool IsPassiveActived=false;
             public void ApplyEffect(Hero user)
             {
-                if (user.Health < user.MaxHealth / 2) //如果生命值小于50%
+                if (user.Health < user.MaxHealth / 2 && IsPassiveActived == false) //如果生命值小于50%
                 {
                     user.Attack += 10; // 增加10点攻击力
-                    Console.WriteLine($"{user.Name}'s {PassiveName} is activated!");
+                    Console.WriteLine($"{user.Name}'s {PassiveName} 已激活!");
+                    IsPassiveActived = true;
+                }
+                else if (user.Health >= user.MaxHealth / 2 && IsPassiveActived == true)
+                {
+                    user.Attack -= 10; // 减少10点攻击力
+                    Console.WriteLine($"{user.Name}'s {PassiveName} 失效了!");
+                    IsPassiveActived = false;
                 }
             }
         }

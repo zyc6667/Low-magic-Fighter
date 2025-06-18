@@ -7,6 +7,7 @@ namespace Low_magic_Fighter
 
         private int currentRoundIndex; // 当前轮到第几个英雄出招，范围0 ~ player1Heroes.Count-1
         private bool isPlayer1Turn;    // true表示玩家1回合，false玩家2回合
+        private int currentTurn;       // 新增：当前是第几回合
 
         public Game(List<Hero> player1Heroes, List<Hero> player2Heroes)
         {
@@ -24,26 +25,32 @@ namespace Low_magic_Fighter
 
             currentRoundIndex = 0;
             isPlayer1Turn = true;
+            currentTurn = 1; // 初始化回合数为1
         }
 
         public void StartGame()
         {
+            for (int i = 0; i < player1Heroes.Count; i++) //开场前要先检查一遍所有英雄的被动激活情况
+            {
+                player1Heroes[i].Passive?.ApplyEffect(player1Heroes[i]);
+            }
+            
             while (player1Heroes.Count > 0 && player2Heroes.Count > 0)
             {
                 // 当前行动英雄
                 Hero currentHero = isPlayer1Turn ? player1Heroes[currentRoundIndex] : player2Heroes[currentRoundIndex];
                 Console.WriteLine($"{currentHero.Name} 的回合");
 
-                currentHero.Passive?.ApplyEffect(currentHero);
+                currentHero.Passive?.ApplyEffect(currentHero);//每回合都要检查被动激活情况,被动模板参照狂战士
 
                 int skillIndex;
                 while (true)
                 {
                     Console.WriteLine("请选择技能编号：");
                     string? input = Console.ReadLine();
-                    if (int.TryParse(input, out skillIndex) && skillIndex >= 0)
+                    if (int.TryParse(input, out skillIndex) && skillIndex >= 0 && skillIndex < currentHero.Skills.Count)
                         break;
-                    Console.WriteLine("输入无效，请输入非负整数。");
+                    Console.WriteLine("输入的技能编号无效。");
                 }
 
                 // 目标英雄只能是对方存活的英雄
@@ -55,7 +62,7 @@ namespace Low_magic_Fighter
                     Console.WriteLine("请选择技能目标英雄编号：");
                     for (int i = 0; i < opponentHeroes.Count; i++)
                     {
-                        Console.WriteLine($"{i}: {opponentHeroes[i].Name} (生命值: {opponentHeroes[i].Health})");
+                        Console.WriteLine($"{i}: {opponentHeroes[i].Name} (生命值: {opponentHeroes[i].Health} 护盾值: {opponentHeroes[i].Shield})");
                     }
                     string? input2 = Console.ReadLine();
                     if (int.TryParse(input2, out heroIndex) && heroIndex >= 0 && heroIndex < opponentHeroes.Count)
@@ -83,6 +90,27 @@ namespace Low_magic_Fighter
                 {
                     // 玩家2回合结束，轮到玩家1的下一个英雄
                     currentRoundIndex = (currentRoundIndex + 1) % player1Heroes.Count;
+                    // 如果回合索引回到0，说明双方英雄都出完一轮，回合数加1
+                    if (currentRoundIndex == 0)
+                    {
+                        currentTurn++;
+                        Console.WriteLine($"第 {currentTurn} 回合开始！");
+                        //护盾回复
+                        for (int i = 0; i < player1Heroes.Count; i++)
+                        {
+                            if (player1Heroes[i].Shield <= 0) continue;//护盾破了就不回复了
+                            if (player1Heroes[i].Shield + player1Heroes[i].ShieldReverse < player1Heroes[i].MaxShield)
+                                player1Heroes[i].Shield += player1Heroes[i].ShieldReverse;
+                            else player1Heroes[i].Shield = player1Heroes[i].MaxShield;
+                        }
+                        for (int i = 0; i < player2Heroes.Count; i++)
+                        {
+                            if (player2Heroes[i].Shield <= 0) continue;//护盾破了就不回复了
+                            if (player2Heroes[i].Shield + player2Heroes[i].ShieldReverse < player2Heroes[i].MaxShield)
+                                player2Heroes[i].Shield += player2Heroes[i].ShieldReverse;
+                            else player2Heroes[i].Shield = player2Heroes[i].MaxShield;
+                        }
+                    }
                 }
                 isPlayer1Turn = !isPlayer1Turn;
 

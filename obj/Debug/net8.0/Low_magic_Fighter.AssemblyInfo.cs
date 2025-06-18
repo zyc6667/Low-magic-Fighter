@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Low_magic_Fighter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3048a7d810fa8b5876461a1ad33d21c545041b82")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2884891e16ae823d498c4e46a1a05bfe3c96c3ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("Low_magic_Fighter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Low_magic_Fighter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

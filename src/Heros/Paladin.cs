@@ -1,25 +1,25 @@
-/*基础英雄:战士*/
+//圣骑士
 using System;
 
 namespace Low_magic_Fighter
 {
-    class Warrior : Hero
+    class Paladin : Hero
     {
-        public Warrior()
+        public Paladin()
         {
-            Name = "战士";
+            Name = "圣骑士";
             Health = 150;
             MaxHealth = 150;
             Attack = 20;
             Defense = 10;
-            Passive = new WarriorPassive();
+            Passive = new BerserkerPassive();
             Skills.Add(new NormalAttack());
             Skills.Add(new SlashSkill());
         }
 
-        class WarriorPassive : IPassive //被动：狂战士之怒
+        class BerserkerPassive : IPassive //被动：狂战士之怒
         {
-            public string PassiveName => "Warrior's Rage";
+            public string PassiveName => "Berserker's Rage";
 
             public void ApplyEffect(Hero user)
             {
