@@ -13,6 +13,7 @@ namespace Low_magic_Fighter
 
     }
 
+    //环形缓冲区
     public class CircularBuffer<T>
     {
         private T[] buffer; // 存储数据的数组

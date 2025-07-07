@@ -8,25 +8,30 @@ namespace Low_magic_Fighter
         public Mage()
         {
             Name = "法师";
-            Health = 150;
-            MaxHealth = 150;
-            Attack = 20;
-            Defense = 10;
-            Passive = new BerserkerPassive();
+            Health = 120;
+            MaxHealth = 120;
+            Attack = 25;
+            Defense = 5;
+            Shield = 20;
+            MaxShield = 20;
+            Passive = new MagePassive();
             Skills.Add(new NormalAttack());
-            Skills.Add(new SlashSkill());
+            Skills.Add(new FireballSkill());
         }
 
-        class BerserkerPassive : IPassive //被动：狂战士之怒
+        class MagePassive : IPassive //被动：魔法护盾
         {
-            public string PassiveName => "Berserker's Rage";
+            public string PassiveName => "【被动】魔法护盾";
+            public string Description => "每回合开始时自动回复5点护盾值，直到护盾值满。";
 
             public void ApplyEffect(Hero user)
             {
-                if (user.Health < user.MaxHealth / 2) //如果生命值小于50%
+                // 每回合开始时，如果护盾未满，自动回复护盾
+                if (user.Shield < user.MaxShield)
                 {
-                    user.Attack += 10; // 增加10点攻击力
-                    Console.WriteLine($"{user.Name}'s {PassiveName} is activated!");
+                    int restoreAmount = Math.Min(5, user.MaxShield - user.Shield);
+                    user.Shield += restoreAmount;
+                    Console.WriteLine($"{user.Name} 的 {PassiveName} 回复了 {restoreAmount} 点护盾值.");
                 }
             }
         }
@@ -35,25 +40,25 @@ namespace Low_magic_Fighter
         {
             public string SkillName => "普通攻击";
             public int Cooldown => 1;
-
+            public string Description => "法师的基础攻击，造成等同于攻击力的魔法伤害。";
             public void Activate(Hero user, Hero target)
             {
                 int damage = user.Attack; 
                 target.TakeDamage(damage);
-                Console.WriteLine($"{user.Name} 使用 {SkillName} 对 {target.Name} 造成了 {damage} 点伤害.");
+                Console.WriteLine($"{user.Name} 发射 {SkillName} 对 {target.Name} 造成了 {damage} 点魔法伤害.");
             }
         }
 
-        class SlashSkill : ISkill //一技能：猛击
+        class FireballSkill : ISkill //一技能：火球术
         {
-            public string SkillName => "Slash";
-            public int Cooldown => 1;
-
+            public string SkillName => "火球术";
+            public int Cooldown => 2;
+            public string Description => "造成1.8倍攻击力的魔法伤害。";
             public void Activate(Hero user, Hero target)
             {
-                int damage = user.Attack * 2; // 示例公式：双倍攻击力伤害
+                int damage = (int)(user.Attack * 1.8); // 1.8倍攻击力伤害
                 target.TakeDamage(damage);
-                Console.WriteLine($"{user.Name} used {SkillName} on {target.Name} for {damage} damage.");
+                Console.WriteLine($"{user.Name} 释放 {SkillName}，炽热的火球对 {target.Name} 造成了 {damage} 点伤害！");
             }
         }
 

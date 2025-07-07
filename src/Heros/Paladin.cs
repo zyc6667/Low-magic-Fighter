@@ -8,25 +8,30 @@ namespace Low_magic_Fighter
         public Paladin()
         {
             Name = "圣骑士";
-            Health = 150;
-            MaxHealth = 150;
-            Attack = 20;
-            Defense = 10;
-            Passive = new BerserkerPassive();
+            Health = 180;
+            MaxHealth = 180;
+            Attack = 18;
+            Defense = 15;
+            Shield = 30;
+            MaxShield = 30;
+            Passive = new PaladinPassive();
             Skills.Add(new NormalAttack());
-            Skills.Add(new SlashSkill());
+            Skills.Add(new HolyStrikeSkill());
         }
 
-        class BerserkerPassive : IPassive //被动：狂战士之怒
+        class PaladinPassive : IPassive //被动：神圣护盾
         {
-            public string PassiveName => "Berserker's Rage";
+            public string PassiveName => "【被动】神圣护盾";
+            public string Description => "生命值低于最大值70%时，每回合自动回复8点护盾值。";
 
             public void ApplyEffect(Hero user)
             {
-                if (user.Health < user.MaxHealth / 2) //如果生命值小于50%
+                // 每回合开始时，如果生命值低于70%，自动回复护盾
+                if (user.Health < user.MaxHealth * 0.7 && user.Shield < user.MaxShield)
                 {
-                    user.Attack += 10; // 增加10点攻击力
-                    Console.WriteLine($"{user.Name}'s {PassiveName} is activated!");
+                    int restoreAmount = Math.Min(8, user.MaxShield - user.Shield);
+                    user.Shield += restoreAmount;
+                    Console.WriteLine($"{user.Name} 的 {PassiveName} 激活，回复了 {restoreAmount} 点护盾值.");
                 }
             }
         }
@@ -35,7 +40,7 @@ namespace Low_magic_Fighter
         {
             public string SkillName => "普通攻击";
             public int Cooldown => 1;
-
+            public string Description => "圣骑士的基础攻击，造成等同于攻击力的伤害。";
             public void Activate(Hero user, Hero target)
             {
                 int damage = user.Attack; 
@@ -44,16 +49,27 @@ namespace Low_magic_Fighter
             }
         }
 
-        class SlashSkill : ISkill //一技能：猛击
+        class HolyStrikeSkill : ISkill //一技能：圣光打击
         {
-            public string SkillName => "Slash";
-            public int Cooldown => 1;
-
+            public string SkillName => "圣光打击";
+            public int Cooldown => 2;
+            public string Description => "造成1.6倍攻击伤害，并为自己回复护盾。";
             public void Activate(Hero user, Hero target)
             {
-                int damage = user.Attack * 2; // 示例公式：双倍攻击力伤害
+                int damage = (int)(user.Attack * 1.6); // 1.6倍攻击力伤害
                 target.TakeDamage(damage);
-                Console.WriteLine($"{user.Name} used {SkillName} on {target.Name} for {damage} damage.");
+                
+                // 圣光打击同时为自己回复护盾
+                int shieldRestore = Math.Min(10, user.MaxShield - user.Shield);
+                if (shieldRestore > 0)
+                {
+                    user.Shield += shieldRestore;
+                    Console.WriteLine($"{user.Name} 释放 {SkillName}，对 {target.Name} 造成 {damage} 点伤害，同时回复了 {shieldRestore} 点护盾！");
+                }
+                else
+                {
+                    Console.WriteLine($"{user.Name} 释放 {SkillName}，对 {target.Name} 造成了 {damage} 点伤害！");
+                }
             }
         }
 
